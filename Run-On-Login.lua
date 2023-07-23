@@ -139,8 +139,6 @@ function addon:OnInitialize()
     }
 end
 
-
-
 function addon:OnEnable()
     if self.db.profile.commands then
         for _, value in ipairs(self.db.profile.commands) do
