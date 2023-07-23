@@ -3,6 +3,7 @@
 ## Notes: Run the defined CVars on every login.
 ## Author: Sauravisus
 ## Version: 1.0.0
+## X-Curse-Project-ID: 892400
 ## SavedVariables: RunOnLoginDB
 ## OptionalDeps: Ace3
 
