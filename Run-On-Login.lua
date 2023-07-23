@@ -3,11 +3,21 @@ local AceConfig = LibStub("AceConfig-3.0")
 local AceConfigDialog = LibStub("AceConfigDialog-3.0")
 local AceDB = LibStub("AceDB-3.0")
 local AceGUI = LibStub("AceGUI-3.0")
-
 local addon = AceAddon:NewAddon("RunOnLogin", "AceConsole-3.0")
+local Defaults = {
+    profile = {
+        commands = {},
+        debugPrint = false,
+    },
+}
+
 local db
 
 local function updateOptions()
+    if not db.commands then
+        db.commands = {}
+    end
+
     addon.options.args.commands = {
         type = "group",
         name = " ",
@@ -120,24 +130,26 @@ addon.options = {
 }
 
 function addon:OnInitialize()
-    self.db = AceDB:New("RunOnLoginDB", { profile = { commands = {} } })
+    self.db = AceDB:New("RunOnLoginDB", Defaults, "global")
     db = self.db.profile
-
     updateOptions()
-
     AceConfig:RegisterOptionsTable("RunOnLogin", self.options)
     self.optionFrames = {
         main = AceConfigDialog:AddToBlizOptions("RunOnLogin", "Run On Login"),
     }
 end
 
+
+
 function addon:OnEnable()
-    for _, value in ipairs(db.commands) do
-        local name, val = strsplit("=", value, 2)
-        if name and val then
-            local success, error = pcall(C_CVar.SetCVar, name, tonumber(val))
-            if not success then
-                print("Invalid command: " .. name)
+    if self.db.profile.commands then
+        for _, value in ipairs(self.db.profile.commands) do
+            local name, val = strsplit("=", value, 2)
+            if name and val then
+                local success, error = pcall(C_CVar.SetCVar, name, tonumber(val))
+                if not success then
+                    print("Invalid command: " .. name)
+                end
             end
         end
     end
@@ -147,20 +159,22 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_LOGIN")
 frame:SetScript("OnEvent", function(self, event, ...)
     if event == "PLAYER_LOGIN" then
-        for i, command in ipairs(db.commands) do
-            local name, value = strsplit("=", command)
-            if name and value then
-                local numberValue = tonumber(value)
-                if numberValue then
-                    if db.debugPrint then -- check if the debugPrint setting is enabled
-                        print("Setting CVar " .. name .. " to " .. numberValue .. ".")
+        if addon.db.profile.commands then
+            for i, command in ipairs(addon.db.profile.commands) do
+                local name, value = strsplit("=", command)
+                if name and value then
+                    local numberValue = tonumber(value)
+                    if numberValue then
+                        if addon.db.profile.debugPrint then -- check if the debugPrint setting is enabled
+                            print("Setting CVar " .. name .. " to " .. numberValue .. ".")
+                        end
+                        C_CVar.SetCVar(name, numberValue)
+                    else
+                        print("Invalid value for CVar " .. name .. ": " .. value)
                     end
-                    C_CVar.SetCVar(name, numberValue)
                 else
-                    print("Invalid value for CVar " .. name .. ": " .. value)
+                    print("Invalid command: " .. command)
                 end
-            else
-                print("Invalid command: " .. command)
             end
         end
     end
