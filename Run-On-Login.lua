@@ -60,12 +60,6 @@ local function updateOptions()
             dialogControl = 'EditBox_WithFocusLost',
             get = function() return val end,
             set = function(_, newValue)
-                -- Check if the value is a number
-                local numberValue = tonumber(newValue)
-                if numberValue == nil then
-                    print("Invalid value: " .. newValue)
-                    return
-                end
                 -- Check if the CVar exists
                 local success, error = pcall(C_CVar.GetCVar, name)
                 if not success then
