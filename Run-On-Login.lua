@@ -82,6 +82,14 @@ local function updateOptions()
             end,
         }
     end
+    addon.options.args.debugPrint = {
+        order = 0,
+        type = "toggle",
+        name = "Debug Print",
+        desc = "Print debug information when setting CVars",
+        get = function() return db.debugPrint end,
+        set = function(_, value) db.debugPrint = value end,
+    }
     addon.options.args.newCommand = {
         order = 1,
         type = "execute",
@@ -91,15 +99,23 @@ local function updateOptions()
             updateOptions()
         end,
     }
-    addon.options.args.debugPrint = {
+    addon.options.args.debugPrintBottom = {
+        order = #db.commands * 2 + 100, -- Set a high order value
         type = "toggle",
         name = "Debug Print",
         desc = "Print debug information when setting CVars",
-        order = 0,
         get = function() return db.debugPrint end,
         set = function(_, value) db.debugPrint = value end,
     }
-    
+    addon.options.args.newCommandBottom = {
+        order = #db.commands * 2 + 101, -- Set a high order value
+        type = "execute",
+        name = "Add CVar and Value",
+        func = function()
+            table.insert(db.commands, "=")
+            updateOptions()
+        end,
+    }
 end
 
 AceGUI:RegisterWidgetType("EditBox_WithFocusLost", function()
