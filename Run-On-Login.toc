@@ -1,8 +1,8 @@
-## Interface: 100205
+## Interface: 100206
 ## Title: Run On Login
 ## Notes: Run the defined CVars on every login.
 ## Author: Sauravisus
-## Version: 1.1.4
+## Version: 1.1.5
 ## X-Curse-Project-ID: 892400
 ## SavedVariables: RunOnLoginDB
 ## OptionalDeps: Ace3
