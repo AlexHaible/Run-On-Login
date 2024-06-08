@@ -1,8 +1,9 @@
-## Interface: 100207
+## Interface: 100207, 110000
 ## Title: Run On Login
 ## Notes: Run the defined CVars on every login.
-## Author: Sauravisus
-## Version: 1.1.5
+## Author: Sauravisus (Xerastrasza - Magtheridon EU, Horde)
+## Version: @project-version@
+## X-Date: @project-date-iso@
 ## X-Curse-Project-ID: 892400
 ## SavedVariables: RunOnLoginDB
 ## OptionalDeps: Ace3
@@ -11,4 +12,12 @@
 embeds.xml
 #@end-no-lib-strip@
 
+#@alpha@
+## OptionalDeps: BugSack, BugGrabber
+#@end-alpha@
+
 Run-On-Login.lua
+
+#@debug@
+## Version: DEV
+#@end-debug@

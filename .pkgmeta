@@ -1,3 +1,5 @@
 package-as: Run-On-Login
+enable-toc-creation: yes
+enable-nolib-creation: no
 
 license-output: LICENSE.txt
