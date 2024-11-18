@@ -1,4 +1,4 @@
-## Interface: 100207, 110000, 110002, 110005
+## Interface: 100207, 110000, 110002, 110005, 110007
 ## Title: Run On Login
 ## Notes: Run the defined CVars on every login.
 ## Author: Sauravisus (Xirastrasza - Argent Dawn EU, Horde)
