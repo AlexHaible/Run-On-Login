@@ -8,6 +8,18 @@
 ## X-Curse-Project-ID: 892400
 ## SavedVariables: RunOnLoginDB
 
+## Category-enUS: Other
+## Category-deDE: Anderes
+## Category-esES: Otros
+## Category-esMX: Otros
+## Category-frFR: Autre
+## Category-itIT: Altro
+## Category-koKR: 기타
+## Category-ptBR: Outro
+## Category-ruRU: Другое
+## Category-zhCN: 其它
+## Category-zhTW: 其他
+
 #@alpha@
 ## OptionalDeps: BugSack, BugGrabber
 #@end-alpha@
