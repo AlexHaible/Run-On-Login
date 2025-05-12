@@ -1,4 +1,4 @@
-## Interface: 110105, 110100
+## Interface: 110107, 110105, 110100
 
 ## Title: Run On Login
 ## Notes: Run the defined CVars on every login.
